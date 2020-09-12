@@ -41,7 +41,7 @@ vmap x "_d
 augroup rungroup
     autocmd!
     autocmd BufRead,BufNewFile *.go nnoremap <F10> :exec '!go run' shellescape(@%, 1)<cr>
-    autocmd BufRead,BufNewFile *.py nnoremap <F10> :w <cr> :exec '!python' shellescape(@%, 1)<cr>
+    autocmd BufRead,BufNewFile *.py nnoremap <F10> :w <bar> :exec '!python' shellescape(@%, 1)<cr>
 augroup END
 
 nnoremap <F2> :%y+ <cr>
