@@ -38,7 +38,12 @@ autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\
 autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++17 -O2 -Wall % -o %:r && %:r.exe <cr>
 vmap x "_d
 
-nnoremap <F11> :w !python <cr>
+augroup rungroup
+    autocmd!
+    autocmd BufRead,BufNewFile *.go nnoremap <F10> :exec '!go run' shellescape(@%, 1)<cr>
+    autocmd BufRead,BufNewFile *.py nnoremap <F10> :exec '!python' shellescape(@%, 1)<cr>
+augroup END
+
 nnoremap <F2> :%y+ <cr>
 
 autocmd VimEnter * 1		
