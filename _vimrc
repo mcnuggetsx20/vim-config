@@ -4,11 +4,10 @@ set langmenu=en_US
 let $LANG = 'en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-au GUIEnter * simalt ~s
 set hls
 set is
 set cb=unnamed
-set gfn=@Fixedsys:h9
+set gfn=8514oem:h9
 set ts=4
 set sw=4
 set si
@@ -16,45 +15,75 @@ inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
 inoremap {{ {
 inoremap {} {}
-cd D:\programy c++
+
+set undodir=D:\vim_backups\undo
+set backupdir=D:\vim_backups\backup
+set directory=D:\vim_backups\swp
+
+:lcd %:p:h
+
+colorscheme darkblue
+
+set belloff=all
+
+
+winpos 325 100
 
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window.
-  set lines=1100 columns=1100
+  set lines=35 columns=125
 else
   " This is console Vim.
   if exists("+lines")
-    set lines=75
+    set lines=5
   endif
   if exists("+columns")
-    set columns=125
+    set columns=5
   endif
 endif
+
+:hi LineNr guifg=#6cb519
+:hi Type guifg=#6cb519
+:hi Cursor guifg=#bfbf1b
+:hi Statement guifg=#bfbf1b
+
+
+:autocmd BufNewFile *.cpp 0r D:\Program Files\Vim\ClassicTemplate.txt
 
 autocmd filetype cpp nnoremap <F9> :w <bar> !g++ -std=c++17 -DLOCAL -Wall -Wextra -Wconversion -Wshadow -Wno-sign-conversion -D_GLIBCXX_DEBUG -fno-sanitize-recover=undefined -DAC % -o %:r -Wl,--stack,268435456<CR>
 autocmd filetype cpp nnoremap <F10> :!%:r<CR>
 autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++17 -O2 -Wall % -o %:r && %:r.exe <cr>
+autocmd filetype cpp nnoremap <f6> :w <bar> !make <cr>
+
+
+nnoremap x "_x
 vmap x "_d
+nnoremap dd "_dd
+nnoremap c "_c
+
+noremap s "_ddko
 
 augroup rungroup
     autocmd!
-    autocmd BufRead,BufNewFile *.go nnoremap <F10> :exec '!go run' shellescape(@%, 1)<cr>
-    autocmd BufRead,BufNewFile *.py nnoremap <F10> :w <bar> :exec '!python' shellescape(@%, 1)<cr>
+    autocmd BufRead,BufNewFile *.go nnoremap <F11> :exec '!go run' shellescape(@%, 1)<cr>
+    autocmd BufRead,BufNewFile *.py nnoremap <F11> :w <bar> :exec '!python' shellescape(@%, 1)<cr>
 augroup END
 
 nnoremap <F2> :%y+ <cr>
 
-autocmd VimEnter * 1		
+nnoremap <C-j> :tabprevious <CR>
+nnoremap<C-k> :tabnext <CR>
+nnoremap <C-x> :tabclose <CR>
 
-e D:/programy c++/brudnopis.cpp
 
 set nu
 augroup numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set rnu
     autocmd BufLeave,FocusLost,InsertEnter * set nornu
+	autocmd BufLeave,FocusLost,InsertEnter * set nu
 augroup END
 
 set diffexpr=MyDiff()
@@ -90,4 +119,3 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
-
