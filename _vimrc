@@ -48,9 +48,8 @@ endif
 " :hi Normal guibg =#e0e0e0
 " :hi Visual guibg=#bdbdbd
 
-highlight iCursor guifg=white guibg=#828282
-set guicursor+=i:block
-set guicursor+=i:ver100
+set guicursor+=i:block-iCursor
+highlight iCursor guifg=black guibg=#dbdbdb
 set guicursor+=n:blinkon0
 
 :autocmd BufNewFile *.cpp 0r D:\Program Files\Vim\ClassicTemplate.txt
