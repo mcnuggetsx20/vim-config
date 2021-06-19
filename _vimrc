@@ -8,8 +8,9 @@ set hls
 set is
 set cb=unnamed
 set gfn=8514oem:h9
-set ts=4
-set sw=4
+set expandtab
+set tabstop=4
+set shiftwidth=4
 set si
 inoremap { {}<Left>
 inoremap {<CR> {<CR>}<Esc>O
@@ -22,17 +23,14 @@ set directory=D:\vim_backups\swp
 
 :lcd %:p:h
 
-colorscheme darkblue
-
 set belloff=all
 
-
-winpos 325 100
+winpos 500 55
 
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window.
-  set lines=35 columns=125
+  set lines=40 columns=100
 else
   " This is console Vim.
   if exists("+lines")
@@ -43,11 +41,17 @@ else
   endif
 endif
 
-:hi LineNr guifg=#6cb519
-:hi Type guifg=#6cb519
-:hi Cursor guifg=#bfbf1b
-:hi Statement guifg=#bfbf1b
+" :hi LineNr guifg=#6cb519
+" :hi Type guifg=#6cb519
+" :hi Cursor guifg=#bfbf1b
+" :hi Statement guifg=#bfbf1b
+" :hi Normal guibg =#e0e0e0
+" :hi Visual guibg=#bdbdbd
 
+highlight iCursor guifg=white guibg=#828282
+set guicursor+=i:block
+set guicursor+=i:ver100
+set guicursor+=n:blinkon0
 
 :autocmd BufNewFile *.cpp 0r D:\Program Files\Vim\ClassicTemplate.txt
 
@@ -56,7 +60,6 @@ autocmd filetype cpp nnoremap <F10> :!%:r<CR>
 autocmd filetype cpp nnoremap <C-C> :s/^\(\s*\)/\1\/\/<CR> :s/^\(\s*\)\/\/\/\//\1<CR> $
 autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++17 -O2 -Wall % -o %:r && %:r.exe <cr>
 autocmd filetype cpp nnoremap <f6> :w <bar> !make <cr>
-
 
 nnoremap x "_x
 vmap x "_d
